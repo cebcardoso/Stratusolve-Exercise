@@ -50,9 +50,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-
         </div>
         <div class="col-md-6">
+			<br />
+			<div class="alert fade in alert-dismissable hidden">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">x</a>
+				<strong></strong> <span></span>
+			</div>
             <h2 class="page-header">Task List</h2>
             <!-- Button trigger modal -->
             <button id="newTask" type="button" class="btn btn-primary btn-lg" style="width:100%;margin-bottom: 5px;" data-toggle="modal" data-target="#myModal">
@@ -70,39 +74,5 @@
 </body>
 <script type="text/javascript" src="assets/js/jquery-1.12.3.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    var currentTaskId = -1;
-    $('#myModal').on('show.bs.modal', function (event) {
-        var triggerElement = $(event.relatedTarget); // Element that triggered the modal
-        var modal = $(this);
-        if (triggerElement.attr("id") == 'newTask') {
-            modal.find('.modal-title').text('New Task');
-            $('#deleteTask').hide();
-            currentTaskId = -1;
-        } else {
-            modal.find('.modal-title').text('Task details');
-            $('#deleteTask').show();
-            currentTaskId = triggerElement.attr("id");
-            console.log('Task ID: '+triggerElement.attr("id"));
-        }
-    });
-    $('#saveTask').click(function() {
-        //Assignment: Implement this functionality
-        alert('Save... Id:'+currentTaskId);
-        $('#myModal').modal('hide');
-        updateTaskList();
-    });
-    $('#deleteTask').click(function() {
-        //Assignment: Implement this functionality
-        alert('Delete... Id:'+currentTaskId);
-        $('#myModal').modal('hide');
-        updateTaskList();
-    });
-    function updateTaskList() {
-        $.post("list_tasks.php", function( data ) {
-            $( "#TaskList" ).html( data );
-        });
-    }
-    updateTaskList();
-</script>
+<script type="text/javascript" src="assets/js/tasks.js"></script>
 </html>
